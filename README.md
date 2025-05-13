@@ -1,5 +1,5 @@
 
-# Pipeline de Processamento de Dados de Ativos da B3
+# Pipeline de Extração e processamento de Dados de Ativos da B3
 
 Este projeto realiza a extração, limpeza, transformação e carga incremental de dados financeiros de ativos da B3
 (ex: PETR4, BBDC4, LREN3), estruturando-os em um banco de dados dimensional com modelo estrela.
