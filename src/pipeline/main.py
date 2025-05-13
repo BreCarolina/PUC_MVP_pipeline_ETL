@@ -1,6 +1,7 @@
 
 import os
 import logging
+from dotenv import load_dotenv
 from PUC_MVP_pipeline_ETL.src.pipeline.extracao_dados import extrair_dados
 from PUC_MVP_pipeline_ETL.src.pipeline.transformacao_dados import transformar_dados
 from PUC_MVP_pipeline_ETL.src.pipeline.carga_dados import carregar_dados
@@ -14,6 +15,12 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
+
+load_dotenv()  # carrega as variáveis do .env
+
+ticker = os.getenv("TICKER")
+path = os.getenv("PATH")
+intervalo = os.getenv("INTERVALO")
 
 def main(ticker, path_projeto, intervalo):
     logging.info("Iniciando pipeline de dados...")
@@ -42,12 +49,3 @@ def main(ticker, path_projeto, intervalo):
     logging.info("Pipeline concluído com sucesso.")
     return df_transformado
 
-if __name__ == "__main__":
-    import argparse
-    parser = argparse.ArgumentParser(description="Executa o pipeline de dados B3")
-    parser.add_argument("--ticker", required=True, help="Ticker do ativo (ex: PETR4.SA)")
-    parser.add_argument("--path", required=True, help="Caminho base do projeto")
-    parser.add_argument("--intervalo", required=True, help="Intervalo de coleta (ex: 5m, 15m)")
-
-    args = parser.parse_args()
-    main(args.ticker, args.path, args.intervalo)
