@@ -1,9 +1,9 @@
 
 import os
 import logging
-from MVP_pipeline.src.pipeline.extracao_dados import extrair_dados
-from MVP_pipeline.src.pipeline.transformacao_dados import transformar_dados
-from MVP_pipeline.src.pipeline.carga_dados import carregar_dados
+from PUC_MVP_pipeline_ETL.src.pipeline.extracao_dados import extrair_dados
+from PUC_MVP_pipeline_ETL.src.pipeline.transformacao_dados import transformar_dados
+from PUC_MVP_pipeline_ETL.src.pipeline.carga_dados import carregar_dados
 
 # Configuração do logger
 logging.basicConfig(
@@ -22,7 +22,7 @@ def main(ticker, path_projeto, intervalo):
     path_dados_brutos = os.path.join(path_projeto, f'data/raw/dados_brutos_{ticker.split(".")[0]}.csv')
     path_dados_limpos = os.path.join(path_projeto, f'data/cleaned/dados_limpos_{ticker.split(".")[0]}.csv')
     path_dados_transformados = os.path.join(path_projeto, f'data/transformed/dados_transformados_{ticker.split(".")[0]}.csv')
-    path_sqlite = os.path.join(path_projeto, f'modelagem/database/SQLite_MVP_pipeline_{ticker.split(".")[0]}.db')
+    path_sqlite = os.path.join(path_projeto, f'modelagem/database/SQLite_PUC_MVP_pipeline_ETL_{ticker.split(".")[0]}.db')
 
     # Extração
     df_extraido = extrair_dados(ticker, intervalo, path_projeto)
