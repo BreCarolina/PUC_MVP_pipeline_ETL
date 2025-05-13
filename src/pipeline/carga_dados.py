@@ -80,7 +80,7 @@ def carregar_dados(ticker, path_projeto):
     print('\nIniciando a carga de dados...')
 
     caminho_csv = os.path.join(path_projeto, f'data/transformed/dados_transformados_{ticker.split(".")[0]}.csv')
-    caminho_db = os.path.join(path_projeto, f'modelagem/database/SQLite_{ticker.split(".")[0]}.db')
+    caminho_db = os.path.join(path_projeto, f'db/SQLite_{ticker.split(".")[0]}.db')
 
     # Garante que a pasta do banco existe
     os.makedirs(os.path.dirname(caminho_db), exist_ok=True)
