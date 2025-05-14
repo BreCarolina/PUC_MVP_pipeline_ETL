@@ -8,7 +8,6 @@ albucore==0.0.24
 albumentations==2.0.6
 ale-py==0.11.0
 altair==5.5.0
-altgraph==0.17.4
 annotated-types==0.7.0
 antlr4-python3-runtime==4.9.3
 anyio==4.9.0
@@ -384,6 +383,7 @@ param==2.2.0
 parso==0.8.4
 parsy==2.1
 partd==1.4.2
+pathlib==1.0.1
 patsy==1.0.1
 peewee==3.18.1
 peft==0.15.2
@@ -433,8 +433,6 @@ pygame==2.6.1
 pygit2==1.18.0
 Pygments==2.19.1
 PyGObject==3.42.0
-pyinstaller==6.13.0
-pyinstaller-hooks-contrib==2025.4
 PyJWT==2.10.1
 pylibcudf-cu12 @ https://pypi.nvidia.com/pylibcudf-cu12/pylibcudf_cu12-25.2.1-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl
 pylibcugraph-cu12==25.2.0
@@ -453,7 +451,6 @@ pyperclip==1.9.0
 pyproj==3.7.1
 pyproject_hooks==1.2.0
 pyshp==2.3.1
-PySimpleGUI==5.0.10
 PySocks==1.7.1
 pyspark==3.5.1
 pytensor==2.30.3
