@@ -1,17 +1,25 @@
 
 import os
+import sys
 import logging
 import PySimpleGUI as sg
-from PUC_MVP_pipeline_ETL.src.pipeline.extracao_dados import extrair_dados
-from PUC_MVP_pipeline_ETL.src.pipeline.transformacao_dados import transformar_dados
-from PUC_MVP_pipeline_ETL.src.pipeline.carga_dados import carregar_dados
 
-# Logger
+# Corrigido: append do caminho do diretório do script
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from extracao_dados import extrair_dados
+from transformacao_dados import transformar_dados
+from carga_dados import carregar_dados
+
+# Caminho do log na mesma pasta do executável
+log_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pipeline_execucao.log')
+
+# Logger configurado corretamente
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler("pipeline_execucao.log"),
+        logging.FileHandler(log_path),
         logging.StreamHandler()
     ]
 )
@@ -23,12 +31,12 @@ def main(ticker, path_projeto, intervalo):
 
     if intervalo not in INTERVALOS_VALIDOS:
         logging.error(f"Intervalo inválido: {intervalo}")
-        sg.popup_error(f"❌ Intervalo inválido. Use: {', '.join(INTERVALOS_VALIDOS)}")
+        sg.popup_error(f"Intervalo inválido. Use: {', '.join(INTERVALOS_VALIDOS)}")
         return
 
     if not os.path.isdir(path_projeto):
         logging.error(f"Caminho inexistente: {path_projeto}")
-        sg.popup_error("❌ Caminho do projeto inválido.")
+        sg.popup_error("Caminho do projeto inválido.")
         return
 
     try:
@@ -57,7 +65,7 @@ def main(ticker, path_projeto, intervalo):
         return
 
     logging.info("Pipeline concluído com sucesso.")
-    sg.popup("✅ Pipeline concluído com sucesso!")
+    sg.popup("Pipeline concluído com sucesso!")
 
 def mostrar_interface():
     sg.theme('SystemDefault')
@@ -81,11 +89,17 @@ def mostrar_interface():
             intervalo = values['INTERVALO'].strip()
 
             if not ticker or not path or not intervalo:
-                sg.popup_error("❌ Todos os campos são obrigatórios.")
+                sg.popup_error("Todos os campos são obrigatórios.")
                 continue
 
             window.close()
-            main(ticker, path, intervalo)
+            try:
+                main(ticker, path, intervalo)
+            except Exception as e:
+                import traceback
+                with open("erro_geral.txt", "w") as f:
+                    f.write(traceback.format_exc())
+                sg.popup_error(f"Erro inesperado. Verifique erro_geral.txt\n\n{e}")
             break
 
     window.close()
