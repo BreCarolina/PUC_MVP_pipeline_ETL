@@ -1,3 +1,10 @@
+## Status do projeto
+
+MVP acadêmico em revisão. A carga no SQLite foi validada com a amostra de LREN3. Duas execuções mantiveram os mesmos 3.181 registros de preços, sem duplicação.
+
+Antes de publicar, falta revisar o cálculo dos indicadores do pregão anterior, testar o fluxo completo e simplificar as instruções de execução.
+
+
 
 # Pipeline de Processamento de Dados de Ativos da B3
 
